@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('Avatar');
+            $table->string("Zoho_id");
+            $table->string('FirstName');
+            $table->string('LastName');
+            $table->string('Email_ID_SmartOSC');
+            $table->string('Gender');
+            $table->string('Date_of_birth');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Backend\DepartmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 Route::prefix('Admin')->name('admin.')->group(function(){
-
-    Route::prefix('User')->name('user.')->group(function(){
-
+    Route::get('Dashboard', function () {
+        return view('layoutAdmin.main');
+    })->name('dashboard');
+    
+    Route::prefix('Department')->name('department.')->group(function(){
+        Route::get('', [DepartmentController::class, 'index'])->name('index');
     });
 });
