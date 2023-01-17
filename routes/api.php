@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\EmployeeController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('List-department', [DepartmentController::class, 'index'])->name('department.index');
-Route::get('List-employee', [EmployeeController::class, 'index'])->name('employee.index');
+Route::get('List-department', [DepartmentController::class, 'list'])->name('department.index');
+Route::post('Create-department', [DepartmentController::class, 'create'])->name('department.create');
+Route::post('Update-department/{id}', [DepartmentController::class, 'update'])->name('department.update');
+Route::get('List-employee', [EmployeeController::class, 'list'])->name('employee.index');

@@ -49,22 +49,30 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Department Lead</label>
                         <div class="col-10">
-                        <select class="form-control line_i" name="Department_Lead" id="Department_Lead"></select>
-                           
+                        <select class="form-control line_i" name="Department_Lead" id="Department_Lead">
+                           @foreach($employees as $e)
+<option value="{{$e[0]['Zoho_ID']}}">{{$e[0]['EmployeeID'].' - '.$e[0]['FirstName'].' '.$e[0]['LastName']}}</option>
+                           @endforeach
+                           </select>
                         </div>
+                       
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Parent Department</label>
                         <div class="col-10">
-                        <select class="form-control line_i" name="Parent_Department" id="Parent_Department"></select>
-                           
+                        <select class="form-control line_i" name="Parent_Department" id="Parent_Department">
+                        @foreach($departments as $d)
+<option value="{{$d[0]['Zoho_ID']}}">{{$d[0]['Department']}}</option>
+                           @endforeach
+                           </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">isC1/Là khối</label>
                         <div class="col-10">
-                            <select class="form-control line_i" name="isDivision" id=""></select>
-                           
+                        <input class="form-control line_i" name="isDivision" type="text"
+                                   value=""/>
+                            
                         </div>
                     </div>
                     <div class="form-group row">
@@ -85,47 +93,31 @@
 @section('script')
 <script>
     $(function(){
-        $.ajax({
-        "url": "{{route('department.index')}}",
-        "method": "GET",  
-        success:function(res){        
-            console.log(res);
-            HandleD(res);
+        $('#sub').on('click', function(){
+            console.log();
+
+            $.ajax({
+        "url": "{{route('department.create')}}",
+        "method": "POST",  
+        data: {
+            'Department': $("input[name = 'Department']").val(),
+            'MailAlias': $("input[name = 'MailAlias']").val(),
+            'Department_Lead': $("select[name = 'Department_Lead']").val(),
+            'Parent_Department': $("select[name = 'Parent_Department']").val(),
+           'isDivision': $("input[name = 'isDivision']").val()
+        },
+        success:function(res){   
+            if(res['response']['status'] == 0){
+                alert(res['response']['result']['message']);
+            }else{
+                alert('Errors Added');
+            }
             
-        },error:function(e){
-            console.log("error");
+        },error:function(){
+            alert('er');
         }
         })
-
-        function HandleD(data) {
-            let html = data.map(function(value, key) {
-                return `
-                <option value="${value[0].Zoho_ID}">${value[0].Department}</option>
-            </tr>`
-            })
-            $('#Parent_Department').html(html)
-        }
-
-        $.ajax({
-        "url": "{{route('employee.index')}}",
-        "method": "GET",  
-        success:function(res){        
-            console.log(res);
-            HandleE(res);
-            
-        },error:function(e){
-            console.log("error");
-        }
         })
-
-        function HandleE(data) {
-            let html = data.map(function(value, key) {
-                return `
-                <option value="${value[0].Zoho_ID}">${value[0].EmployeeID} - ${value[0].FirstName} ${value[0].LastName}</option>
-            `
-            })
-            $('#Department_Lead').html(html)
-        }
     });
 </script>
 

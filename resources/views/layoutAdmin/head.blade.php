@@ -21,7 +21,7 @@
     <link href="{{asset('layoutAdmin/css/themes/layout/brand/dark.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('layoutAdmin/css/themes/layout/aside/dark.css')}}" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="{{asset('layoutAdmin/media/logos/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{asset('layoutLogin/images/logo.webp')}}" />
     <style>  
 a.active {   
     background-color: gold;
