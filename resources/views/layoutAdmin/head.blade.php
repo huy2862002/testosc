@@ -30,19 +30,12 @@
             color: white;
         }
 
-        .line_dep {
+        .line_i {
             border-top: 0px solid white;
             border-left: 0px solid white;
             border-right: 0px solid white;
             border-radius: 0px;
             width: 500px;
-        }
-
-        .line_des {
-            border-top: 0px solid white;
-            border-left: 0px solid white;
-            border-right: 0px solid white;
-            border-radius: 0px;
         }
     </style>
 </head>

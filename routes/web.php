@@ -36,11 +36,4 @@ Route::middleware('auth')->prefix('Admin')->name('admin.')->group(function(){
         Route::get('Delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
         Route::get('Update/{id}', [DepartmentController::class, 'edit'])->name('edit');
     });
-
-    Route::prefix('Designation')->name('designation.')->group(function(){
-        Route::get('', [DesignationController::class, 'index'])->name('index');
-        Route::get('Create', [DesignationController::class, 'create'])->name('create');
-        Route::get('Delete/{id}', [DesignationController::class, 'delete'])->name('delete');
-        Route::get('Update/{id}', [DesignationController::class, 'edit'])->name('edit');
-    });
 });

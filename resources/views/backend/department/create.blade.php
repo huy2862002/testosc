@@ -31,23 +31,23 @@
 
             <div class="card-body" style="display: grid;grid-template-columns:1fr 1fr;grid-gap:20px">
                 <div class="form-group row">
-                    <label class="col-2 col-form-label yiel">Department Name</label>
+                    <label class="col-2 col-form-label yiel">Department Name <span class="text-danger">*</span></label>
                     <div class="col-10">
-                        <input class="form-control line_dep" name="Department" type="text" value="" />
+                        <input class="form-control line_i" name="Department" type="text" value="" />
 
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Mail Alias</label>
                     <div class="col-10">
-                        <input class="form-control line_dep" name="MailAlias" type="text" value="" />
+                        <input class="form-control line_i" name="MailAlias" type="text" value="" />
 
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Department Lead</label>
                     <div class="col-10">
-                        <select class="form-control line_dep" name="Department_Lead" id="Department_Lead">
+                        <select class="form-control line_i" name="Department_Lead" id="Department_Lead">
                             <option selected disabled value="">Select Department Lead</option>
                             @foreach ($employees as $e)
                                 <option value="{{ $e[0]['Zoho_ID'] }}">
@@ -61,7 +61,7 @@
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Parent Department</label>
                     <div class="col-10">
-                        <select class="form-control line_dep" name="Parent_Department" id="Parent_Department">
+                        <select class="form-control line_i" name="Parent_Department" id="Parent_Department">
                             <option selected disabled value="">Select Parent Department</option>
                             @foreach ($departments as $d)
                                 <option value="{{ $d[0]['Zoho_ID'] }}">{{ $d[0]['Department'] }}</option>
@@ -72,7 +72,7 @@
                 <div class="form-group row">
                     <label class="col-2 col-form-label">isC1/Là khối</label>
                     <div class="col-10">
-                        <input class="form-control line_dep" name="isDivision" type="text" value="" />
+                        <input class="form-control line_i" name="isDivision" type="text" value="" />
 
                     </div>
                 </div>
