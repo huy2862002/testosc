@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'FirstName' => 'Nguyễn',
                 'LastName' => 'Quang Huy',
                 'EmailID' => 'huynq8@smartosc.com',
-                'Password' => Hash::make('12345678'),
+                'password' => Hash::make('12345678'),
                 'Gender' => 'Male',
                 'Date_of_birth' => '28-Jun-2002',
                 'Role' => 'Fresher',

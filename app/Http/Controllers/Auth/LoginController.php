@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 
+use App\Http\Controllers\Api\AccessTokenController;
 use App\Http\Controllers\Controller;
+use App\Models\AccessToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

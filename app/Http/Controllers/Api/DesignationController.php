@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\AccessToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-class DepartmentController extends Controller
+
+class DesignationController extends Controller
 {
     public function access_token()
     {
@@ -19,7 +19,7 @@ class DepartmentController extends Controller
       
        $response = Http::withHeaders([
             'Authorization' => 'Zoho-oauthtoken '.$access_token,
-        ])->get('https://people.zoho.com/people/api/forms/P_Department/getRecords');
+        ])->get('https://people.zoho.com/people/api/forms/designation/getRecords');
 
         $json = $response['response']['result'];
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\DepartmentController as ApiDepartmentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\DesignationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,6 @@ Route::middleware('auth')->get('', function () {
     return view('layoutAdmin.main');
 })->name('home');
 
-
 Route::middleware('auth')->prefix('Admin')->name('admin.')->group(function(){
     Route::get('Dashboard', function () {
         return view('layoutAdmin.main');
@@ -35,5 +35,12 @@ Route::middleware('auth')->prefix('Admin')->name('admin.')->group(function(){
         Route::get('Create', [DepartmentController::class, 'create'])->name('create');
         Route::get('Delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
         Route::get('Update/{id}', [DepartmentController::class, 'edit'])->name('edit');
+    });
+
+    Route::prefix('Designation')->name('designation.')->group(function(){
+        Route::get('', [DesignationController::class, 'index'])->name('index');
+        Route::get('Create', [DesignationController::class, 'create'])->name('create');
+        Route::get('Delete/{id}', [DesignationController::class, 'delete'])->name('delete');
+        Route::get('Update/{id}', [DesignationController::class, 'edit'])->name('edit');
     });
 });

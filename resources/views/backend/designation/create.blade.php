@@ -28,58 +28,27 @@
                     <!--end::Button-->
                 </div>
             </div>
-
-            <div class="card-body" style="display: grid;grid-template-columns:1fr 1fr;grid-gap:20px">
+            <div class="card-body">
                 <div class="form-group row">
-                    <label class="col-2 col-form-label yiel">Department Name</label>
+                    <label class="col-2 col-form-label yiel">Designation Name</label>
                     <div class="col-10">
-                        <input class="form-control line_dep" name="Department" type="text" value="" />
+                        <input class="form-control line_des" name="Designation" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Stream</label>
+                    <div class="col-10">
+                        <input class="form-control line_des" name="Stream" type="text" value="" />
 
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Mail Alias</label>
                     <div class="col-10">
-                        <input class="form-control line_dep" name="MailAlias" type="text" value="" />
+                        <input class="form-control line_des" name="MailAlias" type="text" value="" />
 
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">Department Lead</label>
-                    <div class="col-10">
-                        <select class="form-control line_dep" name="Department_Lead" id="Department_Lead">
-                            <option selected disabled value="">Select Department Lead</option>
-                            @foreach ($employees as $e)
-                                <option value="{{ $e[0]['Zoho_ID'] }}">
-                                    {{ $e[0]['EmployeeID'] . ' - ' . $e[0]['FirstName'] . ' ' . $e[0]['LastName'] }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                </div>
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">Parent Department</label>
-                    <div class="col-10">
-                        <select class="form-control line_dep" name="Parent_Department" id="Parent_Department">
-                            <option selected disabled value="">Select Parent Department</option>
-                            @foreach ($departments as $d)
-                                <option value="{{ $d[0]['Zoho_ID'] }}">{{ $d[0]['Department'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-2 col-form-label">isC1/Là khối</label>
-                    <div class="col-10">
-                        <input class="form-control line_dep" name="isDivision" type="text" value="" />
-
-                    </div>
-                </div>
-                <div class="form-group row">
-
-                </div>
-
                 <div class="form-group row">
                     <label for="example-password-input" class="col-2 col-form-label"></label>
                     <div class="col-10">
@@ -98,14 +67,12 @@
                 console.log();
 
                 $.ajax({
-                    "url": "{{ route('department.create') }}",
+                    "url": "{{ route('designation.create') }}",
                     "method": "POST",
                     data: {
-                        'Department': $("input[name = 'Department']").val(),
+                        'Designation': $("input[name = 'Designation']").val(),
                         'MailAlias': $("input[name = 'MailAlias']").val(),
-                        'Department_Lead': $("select[name = 'Department_Lead']").val(),
-                        'Parent_Department': $("select[name = 'Parent_Department']").val(),
-                        'isDivision': $("input[name = 'isDivision']").val()
+                        'Stream': $("select[name = 'Stream']").val(),
                     },
                     success: function(res) {
                         console.log(res);

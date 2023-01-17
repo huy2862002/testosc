@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('access_token', function (Blueprint $table) {
             $table->id();
-            $table->string('Avatar')->nullable();
-            $table->string('Zoho_ID');
-            $table->string('FirstName');
-            $table->string('LastName');
-            $table->string('EmailID');
-            $table->string('password');
-            $table->string('Gender');
-            $table->string('Date_of_birth');
-            $table->string('Role');
+            $table->string('access_token');
+            $table->timestamp('expires_at');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
@@ -36,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('access_token');
     }
 };

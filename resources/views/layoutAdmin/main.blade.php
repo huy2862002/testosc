@@ -3,13 +3,15 @@
 @include('layoutAdmin.head')
 <!--end::Head-->
 <!--begin::Body-->
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+
+<body id="kt_body"
+    class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
         <!--begin::Logo-->
         <a href="index.html">
-            <img alt="Logo" src="{{asset('layoutAdmin/media/logos/logo-light.png')}}" />
+            <img alt="Logo" src="{{ asset('layoutAdmin/media/logos/logo-light.png') }}" />
         </a>
         <!--end::Logo-->
         <!--begin::Toolbar-->
@@ -28,11 +30,16 @@
             <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
                 <span class="svg-icon svg-icon-xl">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                        height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <polygon points="0 0 24 0 24 24 0 24" />
-                            <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                            <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                            <path
+                                d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                            <path
+                                d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                fill="#000000" fill-rule="nonzero" />
                         </g>
                     </svg>
                     <!--end::Svg Icon-->
@@ -58,15 +65,17 @@
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                     <!--begin::Subheader-->
                     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-                        <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                        <div
+                            class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
                             <div class="d-flex align-items-center flex-wrap mr-2">
                                 <!--begin::Page Title-->
                                 <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Dashboard</h5>
                                 <!--end::Page Title-->
                                 <!--begin::Actions-->
-                                <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                                <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
+                                <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200">
+                                </div>
+                                <span class="text-muted font-weight-bold mr-4">#{{Auth::check() ? Auth::user()->Role : 'Admin'}}</span>
                                 <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
                                 <!--end::Actions-->
                             </div>
@@ -88,8 +97,9 @@
         <!--end::Page-->
     </div>
     <!--end::Main-->
-    @include('layoutAdmin.tool')
-    <script>var HOST_URL = "https://keenthemes.com/metronic/tools/preview";</script>
+    <script>
+        var HOST_URL = "https://keenthemes.com/metronic/tools/preview";
+    </script>
     <script>
         var KTAppSettings = {
             "breakpoints": {
@@ -150,21 +160,44 @@
             "font-family": "Poppins"
         };
     </script>
+
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="{{asset('layoutAdmin/plugins/global/plugins.bundle.js')}}"></script>
-    <script src="{{asset('layoutAdmin/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
-    <script src="{{asset('layoutAdmin/js/scripts.bundle.js')}}"></script>
+    <script src="{{ asset('layoutAdmin/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('layoutAdmin/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
+    <script src="{{ asset('layoutAdmin/js/scripts.bundle.js') }}"></script>
     <!--end::Global Theme Bundle-->
     <!--begin::Page Vendors(used by this page)-->
-    <script src="{{asset('layoutAdmin/plugins/custom/fullcalendar/fullcalendar.bundle.js')}}"></script>
+    <script src="{{ asset('layoutAdmin/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="{{asset('layoutAdmin/js/pages/widgets.js')}}"></script>
+    <script src="{{ asset('layoutAdmin/js/pages/widgets.js') }}"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>  
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!--end::Page Scripts-->
-
+    <script>
+        $(document).on('click', '.btn-confirm', function(e) {
+            e.preventDefault()
+            const url = $(this).data('url')
+            const title = $(this).data('title');
+            const record = $(this).data('department');
+            Swal.fire({
+                title: title,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'OK',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                var then_result = Object.values(result)[0]
+                if (then_result == true) {
+                    Swal.fire('The record has been changed', '', 'success');
+                    window.location.replace(url);
+                } else {
+                    Swal.fire('The record is not changed', '', 'info')
+                }
+            })
+        })
+    </script>
     @yield('script')
 </body>
 <!--end::Body-->
