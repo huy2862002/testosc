@@ -47,7 +47,15 @@
                     <tbody id="tbody">
                         <tr>
                             <td>
-                                <h2>Loading ...</h2>
+                                <h4>Loading ...</h4><br>
+                                <div class="loader" >
+                                    <div class="face">
+                                      <div class="circle"></div>
+                                    </div>
+                                    <div class="face">
+                                      <div class="circle"></div>
+                                    </div>
+                                  </div>
                             </td>
                         </tr>
                     </tbody>
