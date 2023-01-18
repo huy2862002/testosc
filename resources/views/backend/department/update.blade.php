@@ -11,7 +11,7 @@
                 <div class="card-toolbar">
                     <!--begin::Button-->
                     <a style="margin-right: 12px" href="{{ route('admin.department.create') }}"
-                        class="btn btn-warning font-weight-bolder">
+                        class="btn btn-success font-weight-bolder">
                         <span class="svg-icon svg-icon-md">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

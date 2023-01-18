@@ -8,9 +8,10 @@
                         <span class="d-block text-muted pt-2 font-size-sm">List</span>
                     </h3>
                 </div>
+
                 <div class="card-toolbar">
                     <!--begin::Button-->
-                    <a href="{{ route('admin.department.create') }}" class="btn btn-warning font-weight-bolder">
+                    <a href="{{ route('admin.department.create') }}" class="btn btn-success font-weight-bolder">
                         <span class="svg-icon svg-icon-md">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -29,6 +30,18 @@
                         </span>Add New Department</a>
                     <!--end::Button-->
                 </div>
+
+
+
+            </div>
+            <div class="card-body" style="display: grid;grid-template-columns:1fr 1fr 1fr">
+                <div></div>
+                <div></div>
+                <div style="display: grid;grid-template-columns: 6fr 1fr;grid-gap:6px">
+                    <input class="form-control" placeholder="Enter Department Name" type="text" name="key_department" />
+                    <button id="btn_search" class="btn btn-warning">Search</button>
+                </div>
+
             </div>
             <div class="card-body">
                 <!--begin: Datatable-->
@@ -48,14 +61,14 @@
                         <tr>
                             <td>
                                 <h4>Loading ...</h4><br>
-                                <div class="loader" >
+                                <div class="loader">
                                     <div class="face">
-                                      <div class="circle"></div>
+                                        <div class="circle"></div>
                                     </div>
                                     <div class="face">
-                                      <div class="circle"></div>
+                                        <div class="circle"></div>
                                     </div>
-                                  </div>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -67,20 +80,23 @@
 @section('script')
     <script>
         $(function() {
-
+            //Call api
             $.ajax({
                 "url": "{{ route('department.index') }}",
                 "method": "GET",
                 success: function(res) {
-                    console.log(res);
-                    HandleData(res);
-
+                    console.log(res.length);
+                    if (res.length > 0) {
+                        HandleData(res);
+                    } else {
+                        HandleEmpty();
+                    }
                 },
                 error: function(e) {
                     console.log(e);
                 }
             })
-
+            // Render data
             function HandleData(data) {
                 let url = window.location.origin;
                 const format = new Intl.NumberFormat('en');
@@ -96,25 +112,26 @@
               
                 <td>
                 <a class="btn-confirm" data-title="Are you sure you want to delete this record ?" title="Delete" style="margin-right: 1px; cursor: pointer" data-url="${url+'/Admin/Department/Delete/'+ value[0].Zoho_ID}"><span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Files/Deleted-file.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon points="0 0 24 0 24 24 0 24"/>
-        <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-        <path d="M10.5857864,13 L9.17157288,11.5857864 C8.78104858,11.1952621 8.78104858,10.5620972 9.17157288,10.1715729 C9.56209717,9.78104858 10.1952621,9.78104858 10.5857864,10.1715729 L12,11.5857864 L13.4142136,10.1715729 C13.8047379,9.78104858 14.4379028,9.78104858 14.8284271,10.1715729 C15.2189514,10.5620972 15.2189514,11.1952621 14.8284271,11.5857864 L13.4142136,13 L14.8284271,14.4142136 C15.2189514,14.8047379 15.2189514,15.4379028 14.8284271,15.8284271 C14.4379028,16.2189514 13.8047379,16.2189514 13.4142136,15.8284271 L12,14.4142136 L10.5857864,15.8284271 C10.1952621,16.2189514 9.56209717,16.2189514 9.17157288,15.8284271 C8.78104858,15.4379028 8.78104858,14.8047379 9.17157288,14.4142136 L10.5857864,13 Z" fill="#000000"/>
-    </g>
-</svg><!--end::Svg Icon--></span></a>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <polygon points="0 0 24 0 24 24 0 24"/>
+                <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                <path d="M10.5857864,13 L9.17157288,11.5857864 C8.78104858,11.1952621 8.78104858,10.5620972 9.17157288,10.1715729 C9.56209717,9.78104858 10.1952621,9.78104858 10.5857864,10.1715729 L12,11.5857864 L13.4142136,10.1715729 C13.8047379,9.78104858 14.4379028,9.78104858 14.8284271,10.1715729 C15.2189514,10.5620972 15.2189514,11.1952621 14.8284271,11.5857864 L13.4142136,13 L14.8284271,14.4142136 C15.2189514,14.8047379 15.2189514,15.4379028 14.8284271,15.8284271 C14.4379028,16.2189514 13.8047379,16.2189514 13.4142136,15.8284271 L12,14.4142136 L10.5857864,15.8284271 C10.1952621,16.2189514 9.56209717,16.2189514 9.17157288,15.8284271 C8.78104858,15.4379028 8.78104858,14.8047379 9.17157288,14.4142136 L10.5857864,13 Z" fill="#000000"/>
+                </g>
+                </svg><!--end::Svg Icon--></span></a>
                 <a title="Update" href="${url+'/Admin/Department/Update/'+ value[0].Zoho_ID}"><span class="svg-icon svg-icon-warning svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Pen-tool-vector.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect x="0" y="0" width="24" height="24"/>
-        <path d="M11,3 L11,11 C11,11.0862364 11.0109158,11.1699233 11.0314412,11.2497543 C10.4163437,11.5908673 10,12.2468125 10,13 C10,14.1045695 10.8954305,15 12,15 C13.1045695,15 14,14.1045695 14,13 C14,12.2468125 13.5836563,11.5908673 12.9685588,11.2497543 C12.9890842,11.1699233 13,11.0862364 13,11 L13,3 L17.7925828,12.5851656 C17.9241309,12.8482619 17.9331722,13.1559315 17.8173006,13.4262985 L15.1298744,19.6969596 C15.051085,19.8808016 14.870316,20 14.6703019,20 L9.32969808,20 C9.12968402,20 8.94891496,19.8808016 8.87012556,19.6969596 L6.18269936,13.4262985 C6.06682778,13.1559315 6.07586907,12.8482619 6.2074172,12.5851656 L11,3 Z" fill="#000000"/>
-        <path d="M10,21 L14,21 C14.5522847,21 15,21.4477153 15,22 L15,23 L9,23 L9,22 C9,21.4477153 9.44771525,21 10,21 Z" fill="#000000" opacity="0.3"/>
-    </g>
-</svg><!--end::Svg Icon--></span></a>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect x="0" y="0" width="24" height="24"/>
+                <path d="M11,3 L11,11 C11,11.0862364 11.0109158,11.1699233 11.0314412,11.2497543 C10.4163437,11.5908673 10,12.2468125 10,13 C10,14.1045695 10.8954305,15 12,15 C13.1045695,15 14,14.1045695 14,13 C14,12.2468125 13.5836563,11.5908673 12.9685588,11.2497543 C12.9890842,11.1699233 13,11.0862364 13,11 L13,3 L17.7925828,12.5851656 C17.9241309,12.8482619 17.9331722,13.1559315 17.8173006,13.4262985 L15.1298744,19.6969596 C15.051085,19.8808016 14.870316,20 14.6703019,20 L9.32969808,20 C9.12968402,20 8.94891496,19.8808016 8.87012556,19.6969596 L6.18269936,13.4262985 C6.06682778,13.1559315 6.07586907,12.8482619 6.2074172,12.5851656 L11,3 Z" fill="#000000"/>
+                <path d="M10,21 L14,21 C14.5522847,21 15,21.4477153 15,22 L15,23 L9,23 L9,22 C9,21.4477153 9.44771525,21 10,21 Z" fill="#000000" opacity="0.3"/>
+                </g>
+                </svg><!--end::Svg Icon--></span></a>
                 </td>
-            </tr>`
+                </tr>`
                 })
                 $('#tbody').html(html)
 
-
+                // Paginate
+                $('#nav').remove();
                 $('#kt_datatable').after('<div id="nav"></div>');
                 var rowsShown = 20;
                 var rowsTotal = $('#kt_datatable tbody tr').length;
@@ -139,6 +156,56 @@
                     }, 300);
                 });
             }
+
+            // Empty record
+
+            function HandleEmpty() {
+
+                html = `
+                <tr>
+                <td><h3>No records found</h3></td>
+                </tr>`
+                $('#tbody').html(html)
+            }
+
+            // Search department name
+
+            $('#btn_search').on('click', function() {
+                var key = $('input[name="key_department"]').val();
+                $('#nav').remove();
+                var html = ` <tr>
+                            <td>
+                                <h4>Loading ...</h4><br>
+                                <div class="loader">
+                                    <div class="face">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="face">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>`;
+                $('#tbody').html(html)
+                $.ajax({
+                    "url": "{{ route('department.index') }}",
+                    "method": "GET",
+                    data: {
+                        'key': key
+                    },
+                    success: function(res) {
+                        console.log(res.length);
+                        if (res.length > 0) {
+                            HandleData(res);
+                        } else {
+                            HandleEmpty();
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                })
+            })
         });
     </script>
 @endsection

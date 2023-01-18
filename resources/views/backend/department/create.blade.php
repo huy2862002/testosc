@@ -113,7 +113,6 @@
                             alert(res['response']['result']['message']);
                         } else {
                             var errors = res['response']['errors'];
-                            console.log();
                             if (errors.length > 1) {
                                 errors.forEach(element => {
                                     alert(Object.values(element['message'])[0]);

@@ -75,7 +75,8 @@
                                 <!--begin::Actions-->
                                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200">
                                 </div>
-                                <span class="text-muted font-weight-bold mr-4">#{{Auth::check() ? Auth::user()->Role : 'Admin'}}</span>
+                                <span
+                                    class="text-muted font-weight-bold mr-4">#{{ Auth::check() ? Auth::user()->Role : 'Admin' }}</span>
                                 <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
                                 <!--end::Actions-->
                             </div>
@@ -174,6 +175,11 @@
     <script src="{{ asset('layoutAdmin/js/pages/widgets.js') }}"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    
     <!--end::Page Scripts-->
     <script>
         $(document).on('click', '.btn-confirm', function(e) {
@@ -191,12 +197,16 @@
                 var then_result = Object.values(result)[0]
                 if (then_result == true) {
                     Swal.fire('The record has been changed', '', 'success');
-                    window.location.replace(url);
+                    setTimeout(function() {
+                        window.location.replace(url);
+                    }, 1000);
+                   
                 } else {
                     Swal.fire('The record is not changed', '', 'info')
                 }
             })
         })
+        $('input[name="daterange"]').daterangepicker();
     </script>
     @yield('script')
 </body>
