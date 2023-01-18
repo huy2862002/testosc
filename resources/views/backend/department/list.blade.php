@@ -46,7 +46,7 @@
             <div class="card-body">
                 <!--begin: Datatable-->
                 <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
-                    <thead>
+                    <thead id="thead">
                         <tr>
                             <th>Department Name</th>
                             <th>Mail Alias</th>
@@ -58,21 +58,20 @@
                         </tr>
                     </thead>
                     <tbody id="tbody">
-                        <tr>
-                            <td>
-                                <h4>Loading ...</h4><br>
-                                <div class="loader">
-                                    <div class="face">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="face">
-                                        <div class="circle"></div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+
                     </tbody>
                 </table>
+            </div>
+            <div class="card-body" id="loading">
+                <h4 style="text-align: center">Loading ...</h4><br>
+                <div class="loader">
+                    <div class="face">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="face">
+                        <div class="circle"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -85,6 +84,7 @@
                 "url": "{{ route('department.index') }}",
                 "method": "GET",
                 success: function(res) {
+                    $('#loading').remove();
                     console.log(res.length);
                     if (res.length > 0) {
                         HandleData(res);
@@ -160,12 +160,11 @@
             // Empty record
 
             function HandleEmpty() {
-
+                $('#kt_datatable').after(' <div class="card-body" id="notfound"></div>');
                 html = `
-                <tr>
-                <td><h3>No records found</h3></td>
+                <h3 style="text-align:center">No records found</h3>
                 </tr>`
-                $('#tbody').html(html)
+                $('#notfound').append(html)
             }
 
             // Search department name
@@ -173,20 +172,21 @@
             $('#btn_search').on('click', function() {
                 var key = $('input[name="key_department"]').val();
                 $('#nav').remove();
-                var html = ` <tr>
-                            <td>
-                                <h4>Loading ...</h4><br>
-                                <div class="loader">
-                                    <div class="face">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="face">
-                                        <div class="circle"></div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>`;
-                $('#tbody').html(html)
+                $('#tbody').remove();
+                $('#notfound').remove();
+                $('#kt_datatable').after(' <div class="card-body" id="loading"></div>');
+                var html = `
+                <h4 style="text-align: center">Loading ...</h4><br>
+                <div class="loader">
+                    <div class="face">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="face">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                           `;
+                $('#loading').append(html)
                 $.ajax({
                     "url": "{{ route('department.index') }}",
                     "method": "GET",
@@ -195,6 +195,8 @@
                     },
                     success: function(res) {
                         console.log(res.length);
+                        $('#loading').remove();
+                        $('#thead').after(' <tbody id="tbody"></tbody>');
                         if (res.length > 0) {
                             HandleData(res);
                         } else {
