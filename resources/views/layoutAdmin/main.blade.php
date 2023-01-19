@@ -179,7 +179,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    
+
     <!--end::Page Scripts-->
     <script>
         $(document).on('click', '.btn-confirm', function(e) {
@@ -196,17 +196,16 @@
             }).then((result) => {
                 var then_result = Object.values(result)[0]
                 if (then_result == true) {
-                    Swal.fire('The record has been changed', '', 'success');
+                    Swal.fire('The record has been deleted', '', 'success');
                     setTimeout(function() {
                         window.location.replace(url);
                     }, 1000);
-                   
+
                 } else {
                     Swal.fire('The record is not changed', '', 'info')
                 }
             })
         })
-        $('input[name="daterange"]').daterangepicker();
     </script>
     @yield('script')
 </body>

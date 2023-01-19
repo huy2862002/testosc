@@ -63,7 +63,6 @@
                 </table>
             </div>
             <div class="card-body" id="loading">
-                <h4 style="text-align: center">Loading ...</h4><br>
                 <div class="loader">
                     <div class="face">
                         <div class="circle"></div>
@@ -72,6 +71,7 @@
                         <div class="circle"></div>
                     </div>
                 </div>
+                <h4 style="text-align: center; margin-top:31px">Loading</h4><br>
             </div>
         </div>
     </div>
@@ -133,7 +133,7 @@
                 // Paginate
                 $('#nav').remove();
                 $('#kt_datatable').after('<div id="nav"></div>');
-                var rowsShown = 20;
+                var rowsShown = 12;
                 var rowsTotal = $('#kt_datatable tbody tr').length;
                 var numPages = rowsTotal / rowsShown;
                 for (i = 0; i < numPages; i++) {
