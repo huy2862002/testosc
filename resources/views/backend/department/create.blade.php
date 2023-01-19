@@ -95,7 +95,6 @@
     <script>
         $(function() {
             $('#sub').on('click', function() {
-                console.log();
 
                 $.ajax({
                     "url": "{{ route('department.create') }}",
