@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Api\DepartmentController as ApiDepartmentController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
@@ -16,7 +16,8 @@ class DepartmentController extends Controller
 
    public function create(){
     $newDepartment = new ApiDepartmentController();
-    $departments = $newDepartment->fetch_form();
+    $dataSend = new Request();
+    $departments = $newDepartment->list($dataSend);
     $newEmployee = new EmployeeController();
     $employees = $newEmployee->list();
     return view('backend.department.create', compact('departments', 'employees'));
