@@ -3,26 +3,26 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\AccessTokenCtl\AccessTokenRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class DepartmentController extends Controller
 {
-    public function access_token()
+    protected $accessToken;
+    public function __construct(AccessTokenRepositoryInterface $accessTokenRepositoryInterface)
     {
-        $ctl_accessToken = new AccessTokenController();
-        $access_token =  $ctl_accessToken->getAccessToken();
-        return $access_token;
+        $this->accessToken = $accessTokenRepositoryInterface;
     }
     public function list(Request $request)
     {
-        $access_token = $this->access_token();
-        $url = 'https://people.zoho.com/people/api/forms/P_Department/getRecords';
+        $accessToken = $this->accessToken->accessToken();
+        $url = urlGetRecord('P_Department');
         if ($request->key) {
-            $url = "https://people.zoho.com/people/api/forms/P_Department/getRecords?searchParams={searchField: 'Department', searchOperator: 'Contains', searchText : ".$request->key."}";
+            $url = urlGetRecord('P_Department') . "?searchParams={searchField: 'Department', searchOperator: 'Contains', searchText : " . $request->key . "}";
         }
         $response = Http::withHeaders([
-            'Authorization' => 'Zoho-oauthtoken ' . $access_token,
+            'Authorization' => 'Zoho-oauthtoken ' . $accessToken,
         ])->get($url);
 
         $newParent = [];
@@ -42,40 +42,13 @@ class DepartmentController extends Controller
 
         return $newParent;
     }
-
-    public function fetch_form()
-    {
-        $access_token = $this->access_token();
-        $url = 'https://people.zoho.com/people/api/forms/P_Department/getRecords';
-        $response = Http::withHeaders([
-            'Authorization' => 'Zoho-oauthtoken ' . $access_token,
-        ])->get($url);
-
-        $newParent = [];
-        if ($response['response']['status'] == 0) {
-            $json = $response['response']['result'];
-
-            $newParent = [];
-            foreach ($json as $zoho_id => $object[0]) {
-                $newObject = [];
-                foreach ($object[0] as $child) {
-                    $child[0]['Zoho_ID'] = (string) $child[0]['Zoho_ID'];
-                    $newObject = $child;
-                }
-                $newParent[$zoho_id] = $newObject;
-            }
-        }
-
-        return $newParent;
-    }
-
 
     public function create(Request $request)
     {
-        $access_token = $this->access_token();
+        $accessToken = $this->accessToken->accessToken();
         $response = Http::asForm()->withHeaders([
-            'Authorization' => 'Zoho-oauthtoken ' . $access_token,
-        ])->post('https://people.zoho.com/people/api/forms/json/P_Department/insertRecord', [
+            'Authorization' => 'Zoho-oauthtoken ' . $accessToken,
+        ])->post(urlAddRecord('P_Department'), [
             'inputData' => '{Department:' . $request->Department . ',MailAlias:' . $request->MailAlias . ',Department_Lead:' . $request->Department_Lead . ',Parent_Department:' . $request->Parent_Department . ',isDivision:' . $request->isDivision . '}'
         ]);
 
@@ -84,10 +57,10 @@ class DepartmentController extends Controller
 
     public function delete($id)
     {
-        $access_token = $this->access_token();
+        $accessToken = $this->accessToken->accessToken();
         $response = Http::asForm()->withHeaders([
-            'Authorization' => 'Zoho-oauthtoken ' . $access_token,
-        ])->post('https://people.zoho.com/people/api/deleteRecords', [
+            'Authorization' => 'Zoho-oauthtoken ' . $accessToken,
+        ])->post(urlDeleteRecord(), [
             'recordIds' => $id,
             'formLinkName' => 'P_Department'
         ]);
@@ -98,10 +71,10 @@ class DepartmentController extends Controller
 
     public function show($id)
     {
-        $access_token = $this->access_token();
+        $accessToken = $this->accessToken->accessToken();
         $response = Http::asForm()->withHeaders([
-            'Authorization' => 'Zoho-oauthtoken ' . $access_token,
-        ])->post('https://people.zoho.com/people/api/forms/P_Department/getRecordByID', [
+            'Authorization' => 'Zoho-oauthtoken ' . $accessToken,
+        ])->post(urlShowRecord('P_Department'), [
             'recordId' => $id,
         ]);
         return $response['response']['result'][0]['Department Details/Chi tiết phòng ban'];
@@ -109,10 +82,10 @@ class DepartmentController extends Controller
 
     public function Update($id, Request $request)
     {
-        $access_token = $this->access_token();
+        $accessToken = $this->accessToken->accessToken();
         $response = Http::asForm()->withHeaders([
-            'Authorization' => 'Zoho-oauthtoken ' . $access_token,
-        ])->post('https://people.zoho.com/people/api/forms/json/P_Department/updateRecord', [
+            'Authorization' => 'Zoho-oauthtoken ' . $accessToken,
+        ])->post(urlUpdateRecord('P_Department'), [
             'inputData' => '{Department:' . $request->Department . ',MailAlias:' . $request->MailAlias . ',Department_Lead:' . $request->Department_Lead . ',Parent_Department:' . $request->Parent_Department . ',isDivision:' . $request->isDivision . '}',
             'recordId' => $id
         ]);

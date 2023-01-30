@@ -1,8 +1,40 @@
 <?php
 
+function contants($cons){
+    $contants = [
+        'refreshToken'=>'1000.4ba2e2d715694e641ae60786387b1b4c.84a1ad979d583f71069551f36ce7ce4e',
+        'clientId'=>'1000.EDWDQS40X91L8N7BGKF7W9AVGE86AN',
+        'clientSecret'=>'7fb0dabfe7bf52c21007b1f988dfe651fcb2c3cbd1',
+        'grantType'=>'refresh_token',
+    ];
+    return $contants[$cons];
+}
+
+function urlGetRecord($formLinkName){
+    return 'https://people.zoho.com/people/api/forms/'.$formLinkName.'/getRecords';
+}
+
+function urlAddRecord($formLinkName){
+    return 'https://people.zoho.com/people/api/forms/json/'.$formLinkName.'/insertRecord';
+}
+
+function urlDeleteRecord(){
+    return 'https://people.zoho.com/people/api/deleteRecords';
+}
+
+function urlShowRecord($formLinkName){
+    return 'https://people.zoho.com/people/api/forms/'.$formLinkName.'/getRecordByID';
+}
+
+function urlUpdateRecord($formLinkName){
+    return 'https://people.zoho.com/people/api/forms/json/'.$formLinkName.'/updateRecord';
+}
+
+
+
 function errorCode($code){
    $errors = [
-        7037=>'Permission denied to perform the attempted action',
+        7037=>  'Permission denied to perform the attempted action',
         7040=>	'Permission denied to view records',
         7038=>	'Permission denied to add records',
         7039=>	'Permission denied to edit records',

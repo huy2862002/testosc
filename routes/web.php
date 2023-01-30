@@ -18,22 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('guest')->get('Login', [LoginController::class, 'viewLogin'])->name('login.view');
-Route::middleware('guest')->post('Login', [LoginController::class, 'storeLogin'])->name('login.store');
-Route::middleware('auth')->get('Logout', [LogoutController::class, 'logout'])->name('logout');
+Route::middleware('guest')->get('login', [LoginController::class, 'viewLogin'])->name('login.view');
+Route::middleware('guest')->post('login', [LoginController::class, 'storeLogin'])->name('login.store');
+Route::middleware('auth')->get('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::middleware('auth')->get('', function () {
     return view('layoutAdmin.main');
 })->name('home');
 
-Route::middleware('auth')->prefix('Admin')->name('admin.')->group(function(){
-    Route::get('Dashboard', function () {
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
+    Route::get('dashboard', function () {
         return view('layoutAdmin.main');
     })->name('dashboard');
     
-    Route::prefix('Department')->name('department.')->group(function(){
+    Route::prefix('department')->name('department.')->group(function(){
         Route::get('', [DepartmentController::class, 'index'])->name('index');
-        Route::get('Create', [DepartmentController::class, 'create'])->name('create');
-        Route::get('Delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
-        Route::get('Update/{id}', [DepartmentController::class, 'edit'])->name('edit');
+        Route::get('create', [DepartmentController::class, 'create'])->name('create');
+        Route::get('delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
+        Route::get('update/{id}', [DepartmentController::class, 'edit'])->name('edit');
     });
 });

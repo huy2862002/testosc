@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('List-department', [DepartmentController::class, 'list'])->name('department.index');
-Route::post('Create-department', [DepartmentController::class, 'create'])->name('department.create');
-Route::post('Update-department/{id}', [DepartmentController::class, 'update'])->name('department.update');
-Route::get('List-employee', [EmployeeController::class, 'list'])->name('employee.index');
+Route::get('list-department', [DepartmentController::class, 'list'])->name('department.index');
+Route::post('create-department', [DepartmentController::class, 'create'])->name('department.create');
+Route::post('update-department/{id}', [DepartmentController::class, 'update'])->name('department.update');
+Route::get('delete-department/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
+Route::get('list-employee', [EmployeeController::class, 'list'])->name('employee.index');

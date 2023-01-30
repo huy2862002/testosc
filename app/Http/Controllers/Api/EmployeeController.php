@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Http;
 
 class EmployeeController extends Controller
 {
-    public function access_token()
+    public function accessToken()
     {
-        $ctl_accessToken = new AccessTokenController();
-        $access_token =  $ctl_accessToken->getAccessToken();
-        return $access_token;
+        $ctlAccessToken = new AccessTokenController();
+        $accessToken =  $ctlAccessToken->getAccessToken();
+        return $accessToken;
     }
     public function list(){
        
