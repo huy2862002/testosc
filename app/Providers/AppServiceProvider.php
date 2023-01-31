@@ -14,15 +14,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            \App\Repositories\AccessTokenCtl\AccessTokenRepositoryInterface::class,
-            \App\Repositories\AccessTokenCtl\AccessTokenRepository::class,
+            \App\Repositories\OAthToken\OAthTokenRepositoryInterface::class,
+            \App\Repositories\OAthToken\OAthTokenRepository::class,
         );
-
-        $this->app->bind(
-            \App\Repositories\DepartmentApiCtl\DepartmentApiRepositoryInterface::class,
-            \App\Repositories\DepartmentApiCtl\DepartmentApiRepository::class
-        );
-
     }
 
     /**

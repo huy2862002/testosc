@@ -1,13 +1,18 @@
 <?php
+namespace App\Traits;
 
-namespace App\Http\Controllers\Api;
-
-use App\Http\Controllers\Controller;
 use App\Models\AccessToken;
+use App\Repositories\OAthToken\OAthTokenRepositoryInterface;
 use Illuminate\Support\Facades\Http;
 
-class AccessTokenController extends Controller
+trait OAthToken
 {
+    protected $OAthToken;
+
+    public function __construct(OAthTokenRepositoryInterface $OAthToken)
+    {
+        $this->OAthToken = $OAthToken;
+    }
     public function callAccessToken()
     {
         $response = Http::post('https://accounts.zoho.com/oauth/v2/token?refresh_token=' . contants('refreshToken') . '&client_id=' . contants('clientId') . '&client_secret=' . contants('clientSecret') . '&grant_type=' . contants('grantType'));
@@ -15,18 +20,17 @@ class AccessTokenController extends Controller
     }
     public function getAccessToken()
     {
-        $modAccessToken = new AccessToken();
-        $lastAccessToken = $modAccessToken->getLast();
+        $lastAccessToken = $this->OAthToken->getLast();
+        $accessToken = $this->callAccessToken();
         if ($lastAccessToken == null) {
-
-            $modAccessToken->createAccessToken($this->callAccessToken());
-            return $this->callAccessToken();
+            $this->OAthToken->createAccessToken($accessToken);
+            return $accessToken;
         } else {
             if (strtotime($lastAccessToken->expires_at) < strtotime(date('Y-m-d H:i:s'))) {
-                $modAccessToken->createAccessToken($this->callAccessToken());
-                return $this->callAccessToken();
+                $this->OAthToken->createAccessToken($accessToken);
+                return $accessToken;
             }
         }
-        return $lastAccessToken->access_token;
+       return $lastAccessToken->access_token;
     }
 }
