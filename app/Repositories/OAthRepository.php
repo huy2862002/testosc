@@ -1,11 +1,11 @@
 <?php
-namespace App\Repositories\OAthToken;
+
+namespace App\Repositories;
 
 use App\Models\AccessToken;
 
-class OAthTokenRepository implements OAthTokenRepositoryInterface
+class OAthRepository
 {
-    //lấy model tương ứng
     public function getLast(){
         $token = AccessToken::orderBy('created_at', 'desc')->first();
         return $token;

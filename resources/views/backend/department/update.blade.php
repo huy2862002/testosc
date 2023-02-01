@@ -74,8 +74,8 @@
                         <select class="form-control line_i" name="Department_Lead" id="Department_Lead">
                             <option selected disabled value="">Select Department Lead</option>
                             @foreach ($employees as $e)
-                                <option @if ($department['Department_Lead.ID'] == $e[0]['Zoho_ID']) selected @endif value="{{ $e[0]['Zoho_ID'] }}">
-                                    {{ $e[0]['EmployeeID'] . ' - ' . $e[0]['FirstName'] . ' ' . $e[0]['LastName'] }}
+                                <option @if ($department['Department_Lead.ID'] == $e[0]->Zoho_ID) selected @endif value="{{ $e[0]->Zoho_ID }}">
+                                    {{ $e[0]->EmployeeID . ' - ' . $e[0]->FirstName . ' ' . $e[0]->LastName }}
                                 </option>
                             @endforeach
 
@@ -89,8 +89,8 @@
                         <select class="form-control line_i" name="Parent_Department" id="Parent_Department">
                             <option selected disabled value="">Select Parent Department</option>
                             @foreach ($departments as $d)
-                                <option @if ($department['Parent_Department.ID'] == $d[0]['Zoho_ID']) selected @endif value="{{ $d[0]['Zoho_ID'] }}">
-                                    {{ $d[0]['Department'] }}</option>
+                                <option @if ($department['Parent_Department.ID'] == $d[0]->Zoho_ID) selected @endif value="{{ $d[0]->Zoho_ID }}">
+                                    {{ $d[0]->Department }}</option>
                             @endforeach
 
                         </select>

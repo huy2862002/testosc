@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Traits\EmployeeTrait;
-use Illuminate\Http\Request;
+use App\Services\EmployeeService;
 
 class EmployeeController extends Controller
 {
-    use EmployeeTrait;
+    protected $employeeService;
 
+    public function __construct(EmployeeService $employeeService){
+        $this->employeeService = $employeeService;
+    }
     public function index()
     {
-        return $this->listEmployee();
+        return $this->employeeService->listEmployee();
     }
 }

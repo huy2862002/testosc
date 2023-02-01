@@ -17,14 +17,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+    
 Route::middleware('guest')->get('login', [LoginController::class, 'viewLogin'])->name('login.view');
 Route::middleware('guest')->post('login', [LoginController::class, 'storeLogin'])->name('login.store');
 Route::middleware('auth')->get('logout', [LogoutController::class, 'logout'])->name('logout');
-Route::middleware('auth')->get('', function () {
+Route::middleware('auth')->get('dashboard', function () {
     return view('layoutAdmin.main');
 })->name('home');
-
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
     Route::get('dashboard', function () {
         return view('layoutAdmin.main');
@@ -34,6 +33,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
         Route::get('', [DepartmentController::class, 'index'])->name('index');
         Route::get('create', [DepartmentController::class, 'create'])->name('create');
         Route::get('delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
-        Route::get('update/{id}', [DepartmentController::class, 'edit'])->name('edit');
+        Route::get('edit/{id}', [DepartmentController::class, 'edit'])->name('edit');
     });
 });

@@ -50,8 +50,8 @@
                         <select class="form-control line_i" name="Department_Lead" id="Department_Lead">
                             <option selected disabled value="">Select Department Lead</option>
                             @foreach ($employees as $e)
-                                <option value="{{ $e[0]['Zoho_ID'] }}">
-                                    {{ $e[0]['EmployeeID'] . ' - ' . $e[0]['FirstName'] . ' ' . $e[0]['LastName'] }}
+                                <option value="{{ $e[0]->Zoho_ID }}">
+                                    {{ $e[0]->EmployeeID . ' - ' . $e[0]->FirstName . ' ' . $e[0]->LastName }}
                                 </option>
                             @endforeach
                         </select>
@@ -64,7 +64,7 @@
                         <select class="form-control line_i" name="Parent_Department" id="Parent_Department">
                             <option selected disabled value="">Select Parent Department</option>
                             @foreach ($departments as $d)
-                                <option value="{{ $d[0]['Zoho_ID'] }}">{{ $d[0]['Department'] }}</option>
+                                <option value="{{ $d[0]->Zoho_ID }}">{{ $d[0]->Department }}</option>
                             @endforeach
                         </select>
                     </div>

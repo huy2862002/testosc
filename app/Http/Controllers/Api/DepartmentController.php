@@ -3,35 +3,37 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Traits\DepartmentTrait;
+use App\Services\DepartmentService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class DepartmentController extends Controller
 {
-    use DepartmentTrait;
+    protected $departmentService;
+    public function __construct(DepartmentService $departmentService){
+        $this->departmentService = $departmentService;
+    }
     public function index(Request $request)
     {
-        return $this->listDepartment($request);
+        return $this->departmentService->listDepartment($request);
     }
 
     public function create(Request $request)
     {
-        return $this->createDepartment($request);
+        return $this->departmentService->createDepartment($request);
     }
 
     public function update($id,Request $request)
     {
-        return $this->updateDepartment($id,$request);
+        return $this->departmentService->updateDepartment($id,$request);
     }
 
     public function delete($id)
     {
-        return $this->deleteDepartment($id);
+        return $this->departmentService->deleteDepartment($id);
     }
 
     public function show($id)
     {
-        return $this->showDepartment($id);
+        return $this->departmentService->showDepartment($id);
     }
 }
