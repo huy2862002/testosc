@@ -69,7 +69,7 @@ class DepartmentService
         $url = config('constants.linkApiZoho').'/forms/json/P_Department/updateRecord';
         $response = Http::asForm()->withHeaders([
             'Authorization' => 'Zoho-oauthtoken ' . $accessToken,
-        ])->post(urlUpdateRecord('P_Department'), [
+        ])->post($url, [
             'inputData' => '{Department:' . $request->Department . ',MailAlias:' . $request->MailAlias . ',Department_Lead:' . $request->Department_Lead . ',Parent_Department:' . $request->Parent_Department . ',isDivision:' . $request->isDivision . '}',
             'recordId' => $id
         ]);
