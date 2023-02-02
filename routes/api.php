@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AnnouncementController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\DesignationController;
 use App\Http\Controllers\Api\EmployeeController;
@@ -23,3 +24,10 @@ Route::get('show-department/{id}', [DepartmentController::class, 'show'])->name(
 Route::post('update-department/{id}', [DepartmentController::class, 'update'])->name('department.update');
 Route::delete('delete-department/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
 Route::get('list-employee', [EmployeeController::class, 'index'])->name('employee.index');
+
+Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('me', [AuthController::class, 'me']);
+});

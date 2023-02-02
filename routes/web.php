@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
     
-Route::middleware('guest')->get('login', [LoginController::class, 'viewLogin'])->name('login.view');
-Route::middleware('guest')->post('login', [LoginController::class, 'storeLogin'])->name('login.store');
+Route::middleware(['guest','api'])->get('login', [LoginController::class, 'viewLogin'])->name('login.view');
+Route::middleware(['guest','api'])->post('login', [LoginController::class, 'storeLogin'])->name('login.store');
 Route::middleware('auth')->get('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::middleware('auth')->get('dashboard', function () {
     return view('layoutAdmin.main');
