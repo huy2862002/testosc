@@ -32,7 +32,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
     Route::prefix('department')->name('department.')->group(function(){
         Route::get('', [DepartmentController::class, 'index'])->name('index');
         Route::get('create', [DepartmentController::class, 'create'])->name('create');
-        Route::get('delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
+        Route::delete('delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
         Route::get('edit/{id}', [DepartmentController::class, 'edit'])->name('edit');
     });
 });

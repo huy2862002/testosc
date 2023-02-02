@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Traits\DepartmentTrait;
-use App\Traits\EmployeeTrait;
-use App\Services\DepartmentService;
 use App\Services\ViewDepartmentService;
 use App\Services\ViewEmployeeService;
 use App\Traits\OAthTokenTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Client;
+
+
 
 class DepartmentController extends Controller
 {

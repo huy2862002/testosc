@@ -8,7 +8,6 @@
                         <span class="d-block text-muted pt-2 font-size-sm">List</span>
                     </h3>
                 </div>
-
                 <div class="card-toolbar">
                     <!--begin::Button-->
                     <a href="{{ route('admin.department.create') }}" class="btn btn-success font-weight-bolder">
@@ -30,9 +29,6 @@
                         </span>Add New Department</a>
                     <!--end::Button-->
                 </div>
-
-
-
             </div>
             <div class="card-body" style="display: grid;grid-template-columns:1fr 1fr 1fr">
                 <div></div>
@@ -103,6 +99,7 @@
                 console.log(url);
                 const format = new Intl.NumberFormat('en');
                 let html = data.map(function(value, key) {
+                
                     return `
                 <tr>
                 <td>${value[0].Department}</td>

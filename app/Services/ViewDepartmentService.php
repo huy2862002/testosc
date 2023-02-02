@@ -36,9 +36,9 @@ class ViewDepartmentService
 
     public function deleteDepartment($id)
     {
-        $urlD = config('constants.linkLocal') . '/api/delete-department/' . $id;
+        $urlD = config('constants.linkLocal') . '/api/delete-department/'.$id;
 
-        $responseD = Http::delete($urlD)->body();
+        $responseD = Http::asForm()->delete($urlD, ['id'=>$id])->body();
 
         $department = json_decode($responseD);
 
