@@ -107,7 +107,7 @@
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Logout</span>
+                                <span class="menu-text">Sign Out</span>
                             </a>
                         </li>
                     </ul>

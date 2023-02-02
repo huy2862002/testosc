@@ -1584,9 +1584,9 @@
                     id="kt_quick_user_toggle">
                     <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
                     <span
-                        class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ Auth::check() ? Auth::user()->FirstName . ' ' . Auth::user()->LastName : 'Admin' }}</span>
+                        class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ Auth::user()->FirstName . ' ' . Auth::user()->LastName }}</span>
                     <span class="symbol symbol-35 symbol-light-success">
-                        <span class="symbol-label font-size-h5 font-weight-bold">VN</span>
+                        <span class="symbol-label font-size-h5 font-weight-bold"><img width="22px" height="22px" src="{{ asset('layoutLogin/images/logo.webp') }}"></span>
                     </span>
                 </div>
             </div>

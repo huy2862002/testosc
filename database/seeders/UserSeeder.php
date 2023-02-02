@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 'Avatar' => '',
                 'Zoho_ID' => '425479000019947202',
                 'FirstName' => 'Nguyễn',
-                'LastName' => 'Admin',
+                'LastName' => 'Quang Admin',
                 'EmailID' => 'admin@smartosc.com',
                 'password' => Hash::make('12345678'),
                 'Gender' => 'Male',

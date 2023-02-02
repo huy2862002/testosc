@@ -36,7 +36,7 @@
             border-left: 0px solid white;
             border-right: 0px solid white;
             border-radius: 0px;
-            width: 500px;
+            width: 666px;
         }
 
         .loader {

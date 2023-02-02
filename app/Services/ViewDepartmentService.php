@@ -15,7 +15,6 @@ class ViewDepartmentService
     {
         $urlD = config('constants.linkLocal') . '/api/list-department';
 
-
         $responseD = Http::get($urlD)->body();
 
         $departments = json_decode($responseD);

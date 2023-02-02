@@ -27,12 +27,8 @@ class DepartmentController extends Controller
 
     public function create(Request $request)
     {
-        $urlD = config('constants.linkApiLocal').'/list-department';
-        $urlE = config('constants.linkApiLocal').'/list-employee';
-
         $departments = (array) $this->viewDepartmentService->listDepartment();
         $employees = (array) $this->viewEmployeeService->listEmployee();
-
         return view('backend.department.create', compact('departments', 'employees'));
     }
 
@@ -42,7 +38,7 @@ class DepartmentController extends Controller
         return redirect()->back();
     }
 
-    public function edit($id, Request $request)
+    public function edit($id)
     {
         $department = (array) $this->viewDepartmentService->showDepartment($id);
         $departments = (array) $this->viewDepartmentService->listDepartment();
