@@ -3,12 +3,20 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
+
+    protected $AuthService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->AuthService = $authService;
+    }
     public function viewLogin()
     {
         return view('Auth.login');
@@ -16,10 +24,15 @@ class LoginController extends Controller
 
     public function storeLogin(Request $request)
     {
-        if (Auth::attempt(['EmailID' => $request->EmailID, 'password' => $request->password])) {
+        $result = (array) $this->AuthService->login($request);
+
+        if ($result['status'] == 1) {
+            session()->put('token', $result['access_token']);
             return redirect()->route('home');
         }
-        
-         return redirect()->route('login.view')->with('error', 'Email or password incorrect');
+        return back();
+    }
+    public function account(){
+        return view('Auth.account');
     }
 }

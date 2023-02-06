@@ -27,11 +27,10 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['EmailID', 'password']);
-
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        $token = auth()->attempt($credentials);
+        if (!$token) {
+            return response()->json(['error' => 'Incorrect email or password', 'status' => 0], 401 );
         }
-
         return $this->respondWithToken($token);
     }
 
@@ -54,7 +53,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['message' => 'Successfully logged out','status'=>1]);
     }
 
     /**
@@ -79,7 +78,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'status'=> 1
+        ],200);
     }
 }

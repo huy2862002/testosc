@@ -25,9 +25,11 @@ Route::post('update-department/{id}', [DepartmentController::class, 'update'])->
 Route::delete('delete-department/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
 Route::get('list-employee', [EmployeeController::class, 'index'])->name('employee.index');
 
-Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('me', [AuthController::class, 'me']);
+
+Route::middleware(['api'])->prefix('auth')->name('auth.')->group(function(){
+    Route::post('login', [AuthController::class, 'login'])->name('loginApi');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logoutAPi');
+    Route::post('refresh', [AuthController::class, 'refresh'])->name('refreshApi');
+    Route::post('account', [AuthController::class, 'me'])->name('accountApi');
 });
+

@@ -34,7 +34,7 @@
                 <div></div>
                 <div></div>
                 <div style="display: grid;grid-template-columns: 6fr 1fr;grid-gap:6px">
-                    <input class="form-control" placeholder="Enter Department Name" type="text" name="key_department" />
+                    <input class="form-control" placeholder="Enter Department Name" type="text" name="key" />
                     <button id="btn_search" class="btn btn-warning">Search</button>
                 </div>
 
@@ -169,7 +169,7 @@
             // Search department name
 
             $('#btn_search').on('click', function() {
-                var key = $('input[name="key_department"]').val();
+                var key = $('input[name="key"]').val();
                 $('#nav').remove();
                 $('#tbody').remove();
                 $('#notfound').remove();

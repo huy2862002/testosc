@@ -11,7 +11,7 @@
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
         <!--begin::Logo-->
         <a href="index.html">
-            <img alt="Logo" src="{{ asset('layoutAdmin/media/logos/logo-light.png') }}" />
+            <img alt="Logo" src="" />
         </a>
         <!--end::Logo-->
         <!--begin::Toolbar-->
@@ -75,13 +75,11 @@
                                 <!--begin::Actions-->
                                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200">
                                 </div>
-                                <span
-                                    class="text-muted font-weight-bold mr-4">#{{ Auth::user()->Role }}</span>
+                                <span class="text-muted font-weight-bold mr-4" id="roleAccount">...</span>
                                 <a href="#" class="btn btn-light-warning font-weight-bolder btn-sm">Add New</a>
                                 <!--end::Actions-->
                             </div>
                             <!--end::Info-->
-
                         </div>
                     </div>
                     <!--end::Subheader-->
@@ -182,6 +180,23 @@
 
     <!--end::Page Scripts-->
     <script>
+        $.ajax({
+            "url": "{{ route('auth.accountApi') }}",
+            "method": "POST",
+            headers: {
+                'Authorization': "Bearer " + "{{session()->get('token')}}",
+            },
+            success: function(res) {
+            console.log("Bearer " + "{{session()->get('token')}}");
+                nameAccount = `${res.FirstName} ${res.LastName}`
+                roleAccount = `${res.Role}`
+                $('#nameAccount').html(nameAccount)
+                $('#roleAccount').html(roleAccount)
+            },
+            error: function(e) {
+                console.log('e');
+            }
+        })
         $(document).on('click', '.btn-confirm', function(e) {
             e.preventDefault()
             const url = $(this).data('url')
