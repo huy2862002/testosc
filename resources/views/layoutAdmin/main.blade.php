@@ -215,7 +215,7 @@
                     setTimeout(function() {
                         window.location.replace(url);
                     }, 1000);
-
+                    
                 } else {
                     Swal.fire('The record is not changed', '', 'info')
                 }

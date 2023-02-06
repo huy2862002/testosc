@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\DepartmentController as ApiDepartmentController;
+use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\DesignationController;
 use App\Http\Controllers\Backend\EmployeeController as BackendEmployeeController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,5 +41,6 @@ Route::middleware('checkAuth')->prefix('admin')->name('admin.')->group(function 
 
     Route::prefix('employee')->name('employee.')->group(function () {
         Route::get('', [BackendEmployeeController::class, 'index'])->name('index');
+      
     });
 });

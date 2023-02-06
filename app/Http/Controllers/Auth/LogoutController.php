@@ -22,6 +22,5 @@ class LogoutController extends Controller
             session()->forget('token');
             return redirect()->route('login.view');
         }
-        
     }
 }

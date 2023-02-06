@@ -16,10 +16,10 @@ class CheckAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->get('token') == null){
-            return redirect()->route('login.view');
+        if(session()->has('token')){
+            return $next($request);
            
         }
-        return $next($request);
+        return response('User does not exist', 401);
     }
 }

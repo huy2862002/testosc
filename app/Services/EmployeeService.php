@@ -13,7 +13,7 @@ class EmployeeService
         $accessToken = $this->getAccessToken();
         $url = config('constants.linkApiZoho').'/forms/P_Employee/getRecords';
         if ($request->key) {
-            $url = $url . "?searchParams={searchField: 'Department', searchOperator: 'Contains', searchText : " . $request->key . "}";
+            $url = $url . "?searchParams={searchField: 'Role', searchOperator: 'Contains', searchText : " . $request->key . "}";
         }
        
         $response = Http::withHeaders([

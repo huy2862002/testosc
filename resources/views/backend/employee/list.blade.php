@@ -34,7 +34,7 @@
                 <div></div>
                 <div></div>
                 <div style="display: grid;grid-template-columns: 6fr 1fr;grid-gap:6px">
-                    <input class="form-control" placeholder="Enter Department Name" type="text" name="key" />
+                    <input class="form-control" placeholder="Enter Role Name" type="text" name="key" />
                     <button id="btn_search" class="btn btn-warning">Search</button>
                 </div>
             </div>

@@ -17,7 +17,7 @@ class CheckGuest
     public function handle(Request $request, Closure $next)
     {
         if(session()->get('token') != null){
-            return redirect()->route('home');
+            return response('You are currently logged in', 401);
         }
         return $next($request);
     }
