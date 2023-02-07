@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckGuest
+class checkAuth
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,13 @@ class CheckGuest
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->get('token') != null){
-            return response('You are currently logged in', 401);
-        }
+
+        if(auth()->check() == false){
+            return response()->json([
+                "message"=>"You haven't connected your account yet",
+                'status'=>0
+            ]);
+        };
         return $next($request);
     }
 }

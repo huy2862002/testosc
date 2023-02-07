@@ -20,14 +20,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('checkGuest')->get('login', [LoginController::class, 'viewLogin'])->name('login.view');
-Route::middleware('checkGuest')->post('login', [LoginController::class, 'storeLogin'])->name('login.store');
-Route::middleware('checkAuth')->get('logout', [LogoutController::class, 'logout'])->name('logout');
-Route::middleware('checkAuth')->get('account', [LoginController::class, 'account'])->name('account');
-Route::middleware('checkAuth')->get('dashboard', function () {
+Route::middleware('guest')->get('login', [LoginController::class, 'viewLogin'])->name('login.view');
+Route::middleware('guest')->post('login', [LoginController::class, 'storeLogin'])->name('login.store');
+Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
+Route::get('account', [LoginController::class, 'account'])->name('account');
+Route::get('dashboard', function () {
     return view('layoutAdmin.main');
 })->name('home');
-Route::middleware('checkAuth')->prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', function () {
         return view('layoutAdmin.main');
     })->name('dashboard');
@@ -41,6 +41,6 @@ Route::middleware('checkAuth')->prefix('admin')->name('admin.')->group(function 
 
     Route::prefix('employee')->name('employee.')->group(function () {
         Route::get('', [BackendEmployeeController::class, 'index'])->name('index');
-      
+
     });
 });

@@ -7,6 +7,7 @@ use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LogoutController extends Controller
 {

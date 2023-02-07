@@ -11,7 +11,7 @@
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
         <!--begin::Logo-->
         <a href="index.html">
-            <img alt="Logo" src="" />
+            <img alt="Logo" width="24px" height="24px" src="{{ asset('layoutLogin/images/logo.webp') }}" />
         </a>
         <!--end::Logo-->
         <!--begin::Toolbar-->
@@ -215,7 +215,7 @@
                     setTimeout(function() {
                         window.location.replace(url);
                     }, 1000);
-                    
+
                 } else {
                     Swal.fire('The record is not changed', '', 'info')
                 }

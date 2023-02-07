@@ -23,7 +23,8 @@ class AuthService
     }
 
     public function logout(){
-      
+
+
         $url =  config('constants.linkLocal') . '/api/auth/logout';
         $response = Http::asForm()->withHeaders([
             'Authorization' => 'Bearer ' . session()->get('token'),

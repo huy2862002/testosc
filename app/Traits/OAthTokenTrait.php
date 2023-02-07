@@ -7,7 +7,7 @@ use App\Services\OAthTokenService;
 trait OAthTokenTrait
 {
     protected $OAthTokenRepo, $OAthTokenService;
-    
+
     public function __construct(OAthRepository $OAthTokenRepo, OAthTokenService $OAthTokenService)
     {
         $this->OAthTokenRepo = $OAthTokenRepo;
@@ -17,10 +17,10 @@ trait OAthTokenTrait
     public function getAccessToken()
     {
         $lastAccessToken = $this->OAthTokenRepo->getLast();
-        
+
         if ($lastAccessToken == null) {
             $accessToken = $this->OAthTokenService->callAccessToken();
-           
+
             $this->OAthTokenRepo->createAccessToken($accessToken);
             return $accessToken;
         } else {
@@ -31,7 +31,6 @@ trait OAthTokenTrait
             }
         }
          return $lastAccessToken->access_token;
-       
     }
 
     public function customZohoId($response){
@@ -52,4 +51,5 @@ trait OAthTokenTrait
 
     return $newParent;
     }
+
 }

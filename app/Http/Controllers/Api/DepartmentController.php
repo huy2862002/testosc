@@ -21,7 +21,7 @@ class DepartmentController extends Controller
     {
         return $this->departmentService->createDepartment($request);
     }
-    
+
     public function update($id,Request $request)
     {
         return $this->departmentService->updateDepartment($id,$request);
@@ -36,4 +36,5 @@ class DepartmentController extends Controller
     {
         return $this->departmentService->showDepartment($id);
     }
+
 }
