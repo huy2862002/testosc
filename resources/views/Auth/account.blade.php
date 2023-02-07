@@ -14,50 +14,38 @@
                     <label class="col-2 col-form-label yiel">First Name</label>
                     <div class="col-10">
                         <input class="form-control line_i" name="firstName" type="text" value="" />
-
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Last Name</label>
                     <div class="col-10">
                         <input class="form-control line_i" name="lastName" type="text" value="" />
-
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label">EmailID</label>
                     <div class="col-10">
                         <input class="form-control line_i" name="emailID" type="text" value="" />
-
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Gender</label>
                     <div class="col-10">
                         <input class="form-control line_i" name="gender" type="text" value="" />
-
                     </div>
                 </div>
                <div class="form-group row">
                     <label class="col-2 col-form-label">BirthDay</label>
                     <div class="col-10">
                         <input class="form-control line_i" name="birthDay" type="text" value="" />
-
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Role</label>
                     <div class="col-10">
                         <input class="form-control line_i" name="role" type="text" value="" />
-
                     </div>
                 </div>
-               
-                <div class="form-group row">
-
-                </div>
-
                 <div class="form-group row">
                     <label for="example-password-input" class="col-2 col-form-label"></label>
                     <div class="col-10">

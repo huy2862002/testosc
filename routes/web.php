@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('guest')->get('login', [LoginController::class, 'viewLogin'])->name('login.view');
-Route::middleware('guest')->post('login', [LoginController::class, 'storeLogin'])->name('login.store');
+Route::get('login', [LoginController::class, 'viewLogin'])->name('login.view');
+Route::post('login', [LoginController::class, 'storeLogin'])->name('login.store');
 Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('account', [LoginController::class, 'account'])->name('account');
 Route::get('dashboard', function () {

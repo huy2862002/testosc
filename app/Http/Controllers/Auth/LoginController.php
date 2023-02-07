@@ -14,7 +14,6 @@ class LoginController extends Controller
 
     protected $AuthService;
 
-
     public function __construct(AuthService $authService)
     {
         $this->AuthService = $authService;
@@ -31,7 +30,7 @@ class LoginController extends Controller
         if ($result['status'] == 1) {
             session()->flush();
             session()->put('token', $result['access_token']);
-            session()->put('exp', $result['expires_in']);
+            session()->put('exp', time());
             return redirect()->route('home');
         }
         return back();

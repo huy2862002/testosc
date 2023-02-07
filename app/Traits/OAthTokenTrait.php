@@ -51,5 +51,4 @@ trait OAthTokenTrait
 
     return $newParent;
     }
-
 }

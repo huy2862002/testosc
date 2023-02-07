@@ -19,8 +19,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-
 Route::middleware('api')->prefix('auth')->name('auth.')->group(function(){
     Route::post('login', [AuthController::class, 'login'])->name('loginApi');
     Route::middleware('checkAuth')->post('logout', [AuthController::class, 'logout'])->name('logoutAPi');
